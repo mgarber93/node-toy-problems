@@ -10,29 +10,25 @@ describe('toEnglish', () => {
     const number = 4;
     expect(typeof number.toEnglish).toBe(typeof console.log);
   });
-
-  test('works for 0', () => {
-    const number = 0;
-    expect(number.toEnglish()).toBe('zero');
-  });
-
-  test('works for 7', () => {
-    const number = 7;
-    expect(number.toEnglish()).toBe('seven');
-  });
-
-  test('works for 11', () => {
-    const number = 11;
-    expect(number.toEnglish()).toBe('eleven');
-  });
-
-  test('works for 575', () => {
-    const number = 575;
-    expect(number.toEnglish()).toBe('five hundred seventy-five');
-  });
-
-  test('works for 78,193,512', () => {
-    const number = 78193512;
-    expect(number.toEnglish()).toBe('seventy-eight million one hundred ninety-three thousand five hundred twelve');
-  })
 });
+
+describe.each([
+  [0, 'zero'],
+  [7, 'seven'],
+  [11, 'eleven'],
+  [12, 'twelve'],
+  [13, 'thirteen'],
+  [14, 'fourteen'],
+  [15, 'fifteen'],
+  [16, 'sixteen'],
+  [17, 'seventeen'],
+  [18, 'eighteen'],
+  [19, 'nineteen'],
+  [575, 'five hundred seventy-five'],
+  [78193512, 'seventy-eight million one hundred ninety-three thousand five hundred twelve']
+])('(%i).toEnglish()', (input, expected) => {
+  test(`returns ${expected}`, () => {
+    expect(input.toEnglish()).toBe(expected);
+  });
+});
+
