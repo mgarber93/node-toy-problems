@@ -90,17 +90,16 @@ function toEnglish() {
   const string = number.toString();
   for (let i = 0; i < string.length; i++) {
     const thisFirstPlace = number % 10;
-    numberArray.push(thisFirstPlace);
+    numberArray.push(thisFirstPlace); // O(1)
     number = Math.floor(number / 10);
   }
-  numberArray = numberArray.reverse();
+  numberArray = numberArray.reverse(); // O(number of digits)
 
-  const output = [];
-
+  const threeCharacterChunks = [];
   for (let i = numberArray.length - 1; i >= 0; i -= 3) {
     const hundredTokens = [];
     if (i - 2 >= 0) {
-      hundredTokens.push(`${digitToOnesPlace(numberArray[i - 2])} hundred`);
+      hundredTokens.push(`${digitToOnesPlace(numberArray[i - 2])} hundred`); // O(1)
     }
     if (i - 1 >= 0) {
       const edgeCase = twoDigitEnglishEdgeCases(numberArray[i - 1], numberArray[i]);
@@ -114,17 +113,15 @@ function toEnglish() {
     } else if (i >= 0) {
       hundredTokens.push(digitToOnesPlace(numberArray[i]));
     }
-    output.push(hundredTokens.join(' '));
+    threeCharacterChunks.push(hundredTokens.join(' '));
   }
 
-  for (let i = 1; i < output.length; i++) {
-    output[i] += ' ';
-    output[i] += units[i - 1];
+  for (let i = 1; i < threeCharacterChunks.length; i++) {
+    threeCharacterChunks[i] += ` ${units[i - 1]}`;
   }
-  output.reverse();
+  threeCharacterChunks.reverse();
 
-
-  return output.join(' ');
+  return threeCharacterChunks.join(' ');
 }
 
 
