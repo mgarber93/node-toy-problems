@@ -21,6 +21,11 @@ describe('toEnglish', () => {
     expect(number.toEnglish()).toBe('seven');
   });
 
+  test('works for 11', () => {
+    const number = 11;
+    expect(number.toEnglish()).toBe('eleven');
+  });
+
   test('works for 575', () => {
     const number = 575;
     expect(number.toEnglish()).toBe('five hundred seventy-five');
