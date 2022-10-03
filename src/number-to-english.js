@@ -53,14 +53,27 @@ function digitToTensPlacePrefix(digit) {
 }
 
 function twoDigitEnglishEdgeCases(tensDigit, onesDigit) {
-  if (tensDigit === 1 && onesDigit === 1) {
-    return 'eleven';
-  }
-  if (tensDigit === 1 && onesDigit === 2) {
-    return 'twelve';
-  }
-  if (tensDigit === 1 && onesDigit === 3) {
-    return 'thirteen';
+  if (tensDigit === 1) {
+    switch (onesDigit) {
+      case 1:
+        return 'eleven';
+      case 2:
+        return 'twelve';
+      case 3:
+        return 'thirteen';
+      case 4:
+        return 'fourteen';
+      case 5:
+        return 'fifteen';
+      case 6:
+        return 'sixteen';
+      case 7:
+        return 'seventeen';
+      case 8:
+        return 'eighteen';
+      case 9:
+        return 'nineteen';
+    }
   }
 }
 
@@ -71,7 +84,7 @@ const units = [
 ];
 
 function toEnglish() {
-  let numberArray = []; // 575 “five hundred seventy-five”
+  let numberArray = [];
 
   let number = this;
   const string = number.toString();
@@ -84,7 +97,6 @@ function toEnglish() {
 
   const output = [];
 
-  // 5, 75 4
   for (let i = numberArray.length - 1; i >= 0; i -= 3) {
     const hundredTokens = [];
     if (i - 2 >= 0) {
