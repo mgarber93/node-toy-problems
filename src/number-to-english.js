@@ -64,6 +64,12 @@ function twoDigitEnglishEdgeCases(tensDigit, onesDigit) {
   }
 }
 
+const units = [
+  'thousand',
+  'million',
+  'billion',
+];
+
 function toEnglish() {
   let numberArray = []; // 575 “five hundred seventy-five”
 
@@ -82,8 +88,7 @@ function toEnglish() {
   for (let i = numberArray.length - 1; i >= 0; i -= 3) {
     const hundredTokens = [];
     if (i - 2 >= 0) {
-      hundredTokens.push(digitToOnesPlace(numberArray[i - 2]));
-      hundredTokens.push('hundred')
+      hundredTokens.push(`${digitToOnesPlace(numberArray[i - 2])} hundred`);
     }
     if (i - 1 >= 0) {
       const edgeCase = twoDigitEnglishEdgeCases(numberArray[i - 1], numberArray[i]);
@@ -100,7 +105,14 @@ function toEnglish() {
     output.push(hundredTokens.join(' '));
   }
 
-  return output.reverse().join(' ');
+  for (let i = 1; i < output.length; i++) {
+    output[i] += ' ';
+    output[i] += units[i - 1];
+  }
+  output.reverse();
+
+
+  return output.join(' ');
 }
 
 

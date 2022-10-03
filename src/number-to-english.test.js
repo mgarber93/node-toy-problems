@@ -3,7 +3,7 @@
 // 78,193,512 > “seventy-eight million one hundred ninety-three thousand five hundred twelve
 // 0 > “zero”
 
-require("./number-to-english");
+require('./number-to-english');
 
 describe('toEnglish', () => {
   test('is a method on numbers', () => {
