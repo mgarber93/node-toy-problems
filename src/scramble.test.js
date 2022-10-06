@@ -16,7 +16,6 @@ describe.each([
   ['aabbcamaomsccdd', 'commas', true],
   ['commas', 'commas', true],
   ['sammoc', 'commas', true]
-
 ])('scramble(%s, %s)', (str1, str2, expected) => {
   test(`returns ${expected}`, () => {
     expect(scramble(str1, str2)).toEqual(expected);
