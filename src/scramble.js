@@ -6,8 +6,26 @@
  * @param {string} str2 
  */
 function scramble(str1, str2) {
-  const string1Characters = new Set(str1.split(''));
-  return str2.split('').every(character => string1Characters.has(character));
+  const characterCount = new Map();
+  for (const char of str1.split('')) {
+    if (!characterCount.has(char)) {
+      characterCount.set(char, 1)
+    } else {
+      characterCount.set(char, characterCount.get(char) + 1);
+    }
+  }
+  for (const char of str2.split('')) {
+    if (!characterCount.has(char)) {
+      return false;
+    } else {
+      const charCount = characterCount.get(char);
+      if (charCount === 0) {
+        return false;
+      }
+      characterCount.set(char, characterCount.get(char) - 1);
+    }
+  }
+  return true;
 }
 
 module.exports.scramble = scramble;
